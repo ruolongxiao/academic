@@ -3,7 +3,7 @@ layout: home
 title: "Home"
 ---
 
-I am a PhD candidate in Economics at George Mason University. My current research study how behavioral factors and information frictions affect strategic interaction in markets and politics. 
+I am a PhD candidate in Economics at George Mason University. I study how information affect decision and interaction in organizations (political and industrial). 
 
 I will be on the job market in AY 2025 - 2026.
 
