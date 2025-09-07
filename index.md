@@ -9,5 +9,5 @@ I will be on the job market in AY 2025 - 2026.
 
 **Fields:** Applied Game Theory, Political Economy, Industrial Organization, Experimental Economics.
 
-**Contact:** [rxiao2@gmu.edu](mailto:rxiao2@gmu.edu)
+**Contact:** [rxiao2@gmu.edu](mailto:rxiao2@gmu.edu) or [ruolongxiao@gmail.com](mailto:ruolongxiao@gmail.com)
 
