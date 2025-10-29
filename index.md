@@ -3,7 +3,7 @@ layout: home
 title: "Home"
 ---
 
-I am a PhD candidate in Economics at George Mason University. I study how information affect decision and interaction in organizations (political and industrial). 
+I am a PhD candidate in Economics at George Mason University. I study information and strategy in market and politics. 
 
 I will be on the job market in AY 2025 - 2026.
 
