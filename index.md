@@ -5,9 +5,9 @@ title: "Home"
 
 I am a PhD candidate in Economics at George Mason University. I study information and strategy in market and politics. 
 
-I will be on the job market in AY 2025 - 2026.
+I am on the job market in AY 2025 - 2026.
 
-**Fields:** Microeconomic Theory, Political Economy, Industrial Organization, Experimental Economics.
+**Fields:** Applied Theory, Political Economy, Industrial Organization, Experimental Economics.
 
 **Contact:** [rxiao2@gmu.edu](mailto:rxiao2@gmu.edu) or [ruolongxiao@gmail.com](mailto:ruolongxiao@gmail.com)
 
