@@ -1,5 +1,3 @@
-# Experiment Participant Links
-
 | # | Label | Quick click | Link |
 |---|-------|-------------|------|
 | 1 | COMP1 | [open](https://otree-experiment-d43d73253bfe.herokuapp.com/room/room?participant_label=COMP1&hash=08dbc264) | https://otree-experiment-d43d73253bfe.herokuapp.com/room/room?participant_label=COMP1&hash=08dbc264 |
