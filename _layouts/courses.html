@@ -1,14 +1,70 @@
 ---
 layout: default
 ---
-
 {{ content }}
 
 <div class="row g-5 mb-5">
-  <div>
-    <h3 class="fw-bold border-bottom pb-3 mb-5">Courses</h3>
-    {% for course in site.data.settings.courses %}
-      <p><a href="{{ site.github.url }}/courses/{{ course.url}}">{{ course.name }}</a></p>
-    {% endfor %}
+  <!-- Courses -->
+  <div class="col-12">
+    <h3 class="fw-bold border-bottom pb-3 mb-4">Courses</h3>
+    {% if site.data.settings.courses %}
+      <div class="row row-cols-1 row-cols-md-2 g-3 mb-2">
+        {% for course in site.data.settings.courses %}
+          <div class="col">
+            <div class="p-3 h-100 border rounded">
+              <h5 class="mb-1">
+                <a href="{{ site.github.url }}/courses/{{ course.url }}" class="text-decoration-none">
+                  {{ course.name }}
+                </a>
+              </h5>
+              {% if course.term %}
+                <small class="text-muted d-block">{{ course.term }}</small>
+              {% endif %}
+              {% if course.description %}
+                <p class="mb-0 mt-2 small">{{ course.description }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">No courses listed yet.</p>
+    {% endif %}
+  </div>
+
+  <!-- Experimental Resources -->
+  <div class="col-12">
+    <h3 class="fw-bold border-bottom pb-3 mb-4">Experimental Resources</h3>
+    {% if site.data.settings.experiments %}
+      <div class="row row-cols-1 row-cols-md-2 g-3">
+        {% for exp in site.data.settings.experiments %}
+          <div class="col">
+            <div class="p-3 h-100 border rounded">
+              <h5 class="mb-1">
+                {% if exp.url %}
+                  <a href="{% if exp.external %}{{ exp.url }}{% else %}{{ site.github.url }}/experiments/{{ exp.url }}{% endif %}" class="text-decoration-none">
+                    {{ exp.name }}
+                  </a>
+                {% else %}
+                  {{ exp.name }}
+                {% endif %}
+              </h5>
+              {% if exp.tags %}
+                <div class="mb-2">
+                  {% for tag in exp.tags %}
+                    <span class="badge bg-light text-dark border me-1">{{ tag }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              {% if exp.description %}
+                <p class="mb-0 small">{{ exp.description }}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">No experimental resources listed yet.</p>
+    {% endif %}
   </div>
 </div>
