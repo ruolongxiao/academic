@@ -6,65 +6,153 @@ layout: default
 <div class="row g-5 mb-5">
   <!-- Courses -->
   <div class="col-12">
-    <h3 class="fw-bold border-bottom pb-3 mb-4">Courses</h3>
+    <h5 class="fw-bold border-bottom pb-2 mb-3">Courses</h5>
     {% if site.data.settings.courses %}
-      <div class="row row-cols-1 row-cols-md-2 g-3 mb-2">
+      <div class="row row-cols-1 row-cols-md-3 g-2">
         {% for course in site.data.settings.courses %}
           <div class="col">
-            <div class="p-3 h-100 border rounded">
-              <h5 class="mb-1">
-                <a href="{{ site.github.url }}/courses/{{ course.url }}" class="text-decoration-none">
-                  {{ course.name }}
-                </a>
-              </h5>
+            <div class="p-2 h-100 border rounded small">
+              <a href="{{ site.github.url }}/courses/{{ course.url }}" class="text-decoration-none fw-semibold">
+                {{ course.name }}
+              </a>
               {% if course.term %}
-                <small class="text-muted d-block">{{ course.term }}</small>
+                <span class="text-muted ms-1">· {{ course.term }}</span>
               {% endif %}
               {% if course.description %}
-                <p class="mb-0 mt-2 small">{{ course.description }}</p>
+                <div class="text-muted mt-1">{{ course.description }}</div>
               {% endif %}
             </div>
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <p class="text-muted">No courses listed yet.</p>
+      <p class="text-muted small">No courses listed yet.</p>
     {% endif %}
   </div>
 
   <!-- Experimental Resources -->
   <div class="col-12">
-    <h3 class="fw-bold border-bottom pb-3 mb-4">Experimental Resources</h3>
+    <h5 class="fw-bold border-bottom pb-2 mb-3">Experimental Resources</h5>
     {% if site.data.settings.experiments %}
-      <div class="row row-cols-1 row-cols-md-2 g-3">
+      <div class="row row-cols-1 row-cols-md-3 g-2">
         {% for exp in site.data.settings.experiments %}
           <div class="col">
-            <div class="p-3 h-100 border rounded">
-              <h5 class="mb-1">
-                {% if exp.url %}
-                  <a href="{% if exp.external %}{{ exp.url }}{% else %}{{ site.github.url }}/experiments/{{ exp.url }}{% endif %}" class="text-decoration-none">
-                    {{ exp.name }}
-                  </a>
-                {% else %}
+            <div class="p-2 h-100 border rounded small">
+              {% if exp.url %}
+                <a href="{% if exp.external %}{{ exp.url }}{% else %}{{ site.github.url }}/experiments/{{ exp.url }}{% endif %}" class="text-decoration-none fw-semibold">
                   {{ exp.name }}
-                {% endif %}
-              </h5>
+                </a>
+              {% else %}
+                <span class="fw-semibold">{{ exp.name }}</span>
+              {% endif %}
               {% if exp.tags %}
-                <div class="mb-2">
+                <span class="ms-1">
                   {% for tag in exp.tags %}
-                    <span class="badge bg-light text-dark border me-1">{{ tag }}</span>
+                    <span class="badge bg-light text-dark border">{{ tag }}</span>
                   {% endfor %}
-                </div>
+                </span>
               {% endif %}
               {% if exp.description %}
-                <p class="mb-0 small">{{ exp.description }}</p>
+                <div class="text-muted mt-1">{{ exp.description }}</div>
               {% endif %}
             </div>
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <p class="text-muted">No experimental resources listed yet.</p>
+      <p class="text-muted small">No experimental resources listed yet.</p>
     {% endif %}
   </div>
+
+  <!-- My Experiment Room (password gated) -->
+  <div class="col-12">
+    <h3 class="fw-bold border-bottom pb-3 mb-4">My Experiment Room</h3>
+
+    <div id="room-locked" class="p-4 border rounded bg-light">
+      <p class="mb-3">
+        🔒 This area is private. Enter the password to continue.
+      </p>
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <input
+          type="password"
+          id="room-password"
+          class="form-control"
+          style="max-width: 240px;"
+          placeholder="Password"
+          autocomplete="off"
+        />
+        <button id="room-unlock" class="btn btn-dark">Enter</button>
+        <span id="room-error" class="text-danger small ms-2" style="display:none;">
+          Incorrect password.
+        </span>
+      </div>
+    </div>
+
+    <div id="room-content" style="display:none;">
+      {% if site.data.settings.experiment_room %}
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+          {% for item in site.data.settings.experiment_room %}
+            <div class="col">
+              <div class="p-3 h-100 border rounded">
+                <h5 class="mb-1">
+                  {% if item.url %}
+                    <a href="{{ item.url }}" class="text-decoration-none">{{ item.name }}</a>
+                  {% else %}
+                    {{ item.name }}
+                  {% endif %}
+                </h5>
+                {% if item.description %}
+                  <p class="mb-0 small">{{ item.description }}</p>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted">Welcome in. Add items under <code>experiment_room</code> in <code>_data/settings.yml</code>.</p>
+      {% endif %}
+      <div class="mt-3">
+        <button id="room-lock" class="btn btn-sm btn-outline-secondary">Lock again</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  (function () {
+    var PASSWORD = "rxgame";
+    var STORAGE_KEY = "experiment-room-unlocked";
+
+    var locked  = document.getElementById("room-locked");
+    var content = document.getElementById("room-content");
+    var input   = document.getElementById("room-password");
+    var unlock  = document.getElementById("room-unlock");
+    var lock    = document.getElementById("room-lock");
+    var error   = document.getElementById("room-error");
+
+    function show()  { locked.style.display = "none";  content.style.display = "block"; }
+    function hide()  { locked.style.display = "block"; content.style.display = "none";  }
+
+    if (sessionStorage.getItem(STORAGE_KEY) === "1") show();
+
+    function tryUnlock() {
+      if (input.value === PASSWORD) {
+        sessionStorage.setItem(STORAGE_KEY, "1");
+        error.style.display = "none";
+        input.value = "";
+        show();
+      } else {
+        error.style.display = "inline";
+      }
+    }
+
+    unlock.addEventListener("click", tryUnlock);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") tryUnlock();
+    });
+    lock.addEventListener("click", function () {
+      sessionStorage.removeItem(STORAGE_KEY);
+      hide();
+    });
+  })();
+</script>
