@@ -19,7 +19,7 @@ experiment_room:
 - {name: Private notebook — draft results,
     url: /experiment-room/draft.html,
     description: Work-in-progress, not for sharing.}
-- {name: Internal dataset,
+- {name: Otree links,
     url: '/assets/user_links.md'}
     
 #contacts:
