@@ -6,8 +6,8 @@ menu:
 
 courses:
 - {name: 'Price Theory', url: 'price-theory'}
-- {name: 'Game Theory', url: 'international-undergrad'}
-- {name: 'Political Economy', url: 'international-undergrad'}
+- {name: 'Game Theory', url: 'game-theory'}
+- {name: 'Political Economy', url: 'poli-econ'}
 
 social:
 - {icon: 'github', link: 'https://ruolongxiao.github.io'}
