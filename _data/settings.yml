@@ -20,7 +20,7 @@ experiment_room:
     url: /experiment-room/draft.html,
     description: Work-in-progress, not for sharing.}
 - {name: Internal dataset,
-    url: '/assets/user_links'}
+    url: '/assets/user_links.md'}
     
 #contacts:
 #- {name: 'Dr. Academia', title: 'Professor', department: 'Physics & Astronomy', institution: 'Some University', institution_address: '1 Main Street, Canada', phone: '(000) 000-0000', email: 'hello@university.edu', office: 'Science Building 505', image: 'assets/img/contact.jpg'}
